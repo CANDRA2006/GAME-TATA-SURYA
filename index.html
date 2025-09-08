@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Game Pengetahuan Tata Surya</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="galaxy-bg"></div>
+    <div class="stars" id="stars"></div>
+    
+   <!-- Sistem Tata Surya -->
+<div class="solar-system">
+    <div class="sun"></div>
+    
+    <div class="orbit mercury-orbit">
+        <div class="planet mercury"></div>
+    </div>
+    
+    <div class="orbit venus-orbit">
+        <div class="planet venus"></div>
+    </div>
+    
+    <div class="orbit earth-orbit">
+        <div class="planet earth"></div>
+    </div>
+    
+    <div class="orbit mars-orbit">
+        <div class="planet mars"></div>
+    </div>
+    
+    <!-- Orbit Asteroid Belt -->
+    <div class="asteroid-belt">
+        <div class="asteroid asteroid1"></div>
+        <div class="asteroid asteroid2"></div>
+        <div class="asteroid asteroid3"></div>
+        <div class="asteroid asteroid4"></div>
+        <div class="asteroid asteroid5"></div>
+        <div class="asteroid asteroid6"></div>
+        <div class="asteroid asteroid7"></div>
+        <div class="asteroid asteroid8"></div>
+        <div class="asteroid asteroid9"></div>
+        <div class="asteroid asteroid10"></div>
+        <div class="asteroid asteroid11"></div>
+        <div class="asteroid asteroid12"></div>
+    </div>
+    
+    <div class="orbit jupiter-orbit">
+        <div class="planet jupiter"></div>
+    </div>
+    
+    <div class="orbit saturn-orbit">
+        <div class="planet saturn"></div>
+    </div>
+    
+    <div class="orbit uranus-orbit">
+        <div class="planet uranus"></div>
+    </div>
+    
+    <div class="orbit neptune-orbit">
+        <div class="planet neptune"></div>
+    </div>
+</div>
+
+    <!-- Komet -->
+    <div class="comet"></div>
+    <div class="comet" style="animation-delay: -7s; animation-duration: 20s;"></div>
+    <div class="comet" style="animation-delay: -12s; animation-duration: 18s;"></div>
+
+    <!--Tampilan Game -->
+    <div class="game-container">
+        <div class="header">
+            <h1>🚀 Game Tebak Objek Alam Semesta</h1>
+            <p>Tebak objek berdasarkan ciri-cirinya!</p>
+        </div>
+
+        <div class="score-board">
+            <div class="score-item">
+                <div>Skor Benar</div>
+                <div class="score-number" id="correctScore">0</div>
+            </div>
+            <div class="score-item">
+                <div>Total Pertanyaan</div>
+                <div class="score-number" id="totalQuestions">0</div>
+            </div>
+            <div class="score-item">
+                <div>Pertanyaan ke-</div>
+                <div class="score-number" id="currentQuestion">1</div>
+            </div>
+        </div>
+
+        <div id="gameArea">
+            <div class="question-container">
+                <div class="question-text" id="questionText">
+                    Selamat datang di Game Tebak Objek Alam Semesta! Bersiaplah untuk menguji pengetahuan Anda tentang tata surya.
+                </div>
+                <div class="clues" id="cluesContainer">
+                    <h4>🔍 Petunjuk:</h4>
+                    <ul id="cluesList">
+                        <li>Klik tombol "Mulai Game" untuk memulai!</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="options-container" id="optionsContainer">
+                <button class="option-btn" onclick="startGame()" style="grid-column: 1 / -1; background: linear-gradient(135deg, #4caf50, #388e3c);">
+                    🚀 Mulai Game
+                </button>
+            </div>
+        </div>
+
+        <div id="gameOverScreen" class="game-over" style="display: none;">
+            <h2>🎉 Game Selesai!</h2>
+            <div class="final-score" id="finalScore">0/0</div>
+            <p>Terima kasih telah memainkan game tebak objek alam semesta! Mau coba eksplorasi luar angkasa atau main lagi?</p>
+            <button class="restart-btn" onclick="restartGame()">🔄 Main Lagi</button>
+            <a href="https://youtu.be/hEdzv7D4CbQ?si=lUaV5mvNpJ9kJ0oV" target="_blank" rel="noopener noreferrer" class="explore-link">
+                🌌 Eksplorasi Luar Angkasa
+            </a>
+        </div>
+    </div>
+
+    <div class="result-modal" id="resultModal">
+        <div class="result-content" id="resultContent">
+            <div class="result-text" id="resultText">ANDA BENAR!!!</div>
+            <div class="planet-image" id="planetImage">
+                🪐
+            </div>
+            <div class="planet-info" id="planetInfo">
+                Informasi planet akan ditampilkan di sini
+            </div>
+            <button class="next-btn" onclick="nextQuestion()">Lanjut ➡️</button>
+        </div>
+    </div>
+
+     <!-- Space Gallery Section -->
+<div class="space-gallery">
+    <div class="gallery-header">
+        <h2>Galeri Objek Alam Semesta</h2>
+        <p>Jelajahi keindahan dan keajaiban tata surya kita</p>
+    </div>
+    
+   <div class="gallery-container">
+  <div class="gallery-scroll">
+  
+    <!-- Template Galeri -->
+    
+    <div class="gallery-item">
+      <div class="gallery-image">
+        <img src="/SolarSystem/Merkurius.jpg" alt="Merkurius">
+      </div>
+      <div class="gallery-content">
+        <div class="gallery-title">Merkurius</div>
+        <div class="gallery-description">
+          Planet terdekat dari Matahari dan terkecil dalam tata surya.
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-image">
+        <img src="/SolarSystem/Venus.jpg" alt="Venus">
+      </div>
+      <div class="gallery-content">
+        <div class="gallery-title">Venus</div>
+        <div class="gallery-description">
+          Planet terpanas dengan atmosfer sangat tebal yang memicu efek rumah kaca.
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-image">
+        <img src="/SolarSystem/Bumi.jpg" alt="Bumi">
+      </div>
+      <div class="gallery-content">
+        <div class="gallery-title">Bumi</div>
+        <div class="gallery-description">
+          Satu-satunya planet yang diketahui mendukung kehidupan dan tempat tinggal manusia. 
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-image">
+        <img src="/SolarSystem/Bulan.jpg" alt="Bulan">
+      </div>
+      <div class="gallery-content">
+        <div class="gallery-title">Bulan</div>
+        <div class="gallery-description">
+          Satelit alami Bumi yang berperan penting dalam pasang surut air laut.
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-image">
+        <img src="/SolarSystem/Mars.jpg" alt="Mars">
+      </div>
+      <div class="gallery-content">
+        <div class="gallery-title">Mars</div>
+        <div class="gallery-description">
+          Mars yang disebut Planet Merah, target utama eksplorasi antariksa.
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-image">
+        <img src="/SolarSystem/Jupiter.jpg" alt="Jupiter">
+      </div>
+      <div class="gallery-content">
+        <div class="gallery-title">Jupiter</div>
+        <div class="gallery-description">
+          Planet terbesar yang ikonik dengan Bintik Merah Besar.
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-image">
+        <img src="/SolarSystem/Saturnus.jpg" alt="Saturnus">
+      </div>
+      <div class="gallery-content">
+        <div class="gallery-title">Saturnus</div>
+        <div class="gallery-description">
+          Terkenal dengan sistem cincin yang sangat indah.
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-image">
+        <img src="/SolarSystem/Uranus.jpg" alt="Uranus">
+      </div>
+      <div class="gallery-content">
+        <div class="gallery-title">Uranus</div>
+        <div class="gallery-description">
+          Planet yang unik karena rotasinya miring hampir horizontal.
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-image">
+        <img src="/SolarSystem/Neptunus.jpg" alt="Neptunus">
+      </div>
+      <div class="gallery-content">
+        <div class="gallery-title">Neptunus</div>
+        <div class="gallery-description">
+          Planet biru dengan angin tercepat di tata surya.
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-image">
+        <img src="/SolarSystem/Pluto.jpg" alt="Pluto">
+      </div>
+      <div class="gallery-content">
+        <div class="gallery-title">Pluto</div>
+        <div class="gallery-description">
+          Dulu planet kesembilan, kini diklasifikasikan sebagai planet kerdil.
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-image">
+        <img src="/SolarSystem/Asteroid.jpg" alt="Asteroid">
+      </div>
+      <div class="gallery-content">
+        <div class="gallery-title">Asteroid</div>
+        <div class="gallery-description">
+          Bebatuan luar angkasa yang bentuknya abstrak dan mengorbit matahari, kebanyakan berada di sabuk asteroid.
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-image">
+        <img src="/SolarSystem/Komet.jpg" alt="Komet">
+      </div>
+      <div class="gallery-content">
+        <div class="gallery-title">Komet</div>
+        <div class="gallery-description">
+          Objek es yang menghasilkan ekor saat mendekati Matahari.
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-image">
+        <img src="/SolarSystem/Galaksi Bima Sakti.jpg" alt="Galaksi Bima Sakti">
+      </div>
+      <div class="gallery-content">
+        <div class="gallery-title">Galaksi Bima Sakti</div>
+        <div class="gallery-description">
+          Galaksi tempat Tata surya kita berada.
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-image">
+        <img src="/SolarSystem/Lubang Hitam.jpg" alt="Lubang Hitam">
+      </div>
+      <div class="gallery-content">
+        <div class="gallery-title">Lubang Hitam</div>
+        <div class="gallery-description">
+          Objek luar angkasa dengan gravitasi ekstrem yang bahkan cahaya tidak bisa lepas.
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-image">
+        <img src="/SolarSystem/Quasar.jpg" alt="Quasar">
+      </div>
+      <div class="gallery-content">
+        <div class="gallery-title">Quasar</div>
+        <div class="gallery-description">
+          Sumber energi sangat terang dari pusat galaksi aktif yang diduga mengandung lubang hitam supermasif.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</section>
+    <!--MESSAGE FROM AUTHOR-->
+    <div class="testimonial-container">
+        <div class="testimonial-wrapper">
+            <div class="testimonial-box mySwiper">
+                <div class="testimonial-content swiper-wrapper">
+                    <div class="testimonial-slide swiper-slide">
+                        <img src="Maskot Bumi.png" alt="">
+                        <h3></h3>
+                        <p> 
+                          "Terima kasih telah mengunjungi dan memainkan game Tebak Objek Alam Semesta!"
+                          Kami sangat menghargai waktu dan antusiasme kamu. Semoga pengalaman bermainmu menyenangkan dan 
+                          menambah pengetahuan tentang keajaiban alam semesta!.</p>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+2025 | © All Rights Reserved.
+
